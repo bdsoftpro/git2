@@ -1,3 +1,4 @@
+requires 'inc::Module::Install', '== 1.14';
 requires 'Time::HiRes', '== 1.9732';
 requires 'DBD::SQLite', '== 1.50';
 requires 'DBI', '== 1.634';
@@ -13,5 +14,6 @@ requires 'Mojolicious::Plugin::BasicAuth', '== 0.08';
 requires 'Mojolicious::Plugin::AutoRoute', '== 0.19';
 requires 'Mojolicious::Plugin::INIConfig', '== 0.03';
 requires 'Mojolicious::Plugin::DBViewer', '== 0.28';
-requires 'Text::Markdown::Hoedown', '== 1.01';
-requires 'Time::Moment', '== 0.38';
+requires 'Text::Markdown::Hoedown', '== 1.03';
+requires 'Time::Moment', '== 0.42';
+requires 'Number::Bytes::Human', '== 0.11';
