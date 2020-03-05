@@ -1,0 +1,13 @@
+<footer class="footer">
+    <div>
+    <a>GitDada@2020 All Rigth Reserved.
+    <span>Powered by <a href="<%= url_for('/') %>">ProNoor</a></span>
+    </div>
+    <div>
+    <nav class="nav">
+        <a href="#" class="nav-link">Term &amp; Condition</a>
+        <a href="#" class="nav-link">Privacy Policy</a>
+        <a href="#" class="nav-link">Get Help</a>
+    </nav>
+    </div>
+</footer>

@@ -1,0 +1,134 @@
+#!/usr/bin/env perl
+
+use FindBin;
+use DBIx::Custom;
+
+my $database_file = shift // "$FindBin::Bin/data/gitprep.db";
+
+#  DBI
+my %dbi_args = (
+  dsn => "dbi:SQLite:database=$database_file",
+  connector => 1,
+  option => {sqlite_unicode => 1, sqlite_use_immediate_transaction => 1}
+);
+my $dbi = DBIx::Custom->connect(%dbi_args);
+
+# Database state
+my $database_state;
+if (!-f $database_file) {
+  $database_state = 'empty';
+}
+else {
+  # If project.user_id exists, that database is version 1
+  eval { $dbi->select('user_id', table => 'project', append => 'limit 0, 1') };
+  
+  if ($@) {
+    $database_state = 'current';
+  }
+  else {
+    $database_state = 'v1';
+  }
+}
+
+# Need upgrade
+if ($database_state eq 'v1') {
+  die "Can't setup database. you maybe need upgrade database";
+}
+
+eval {
+    my $sql = <<"EOS";
+create table profile (
+  row_id integer primary key autoincrement,
+  id not null unique default '',
+  user integer not null default 0,
+  bio not null default '',
+  starts integer not null default 0,
+  followers integer not null default 0,
+  following integer not null default 0,
+  address not null default '',
+  zip integer not null default 0,
+  state varchar(100) not null default '',
+  country varchar(100) not null default ''
+);
+EOS
+    $dbi->execute($sql);
+  };
+
+eval {
+    my $sql = <<"EOS";
+create table social (
+  row_id integer primary key autoincrement,
+  id not null unique default '',
+  user integer not null default 0,
+  name varchar(255) not null default '',
+  socialurl varchar(255) not null default ''
+);
+EOS
+    $dbi->execute($sql);
+  };
+
+eval {
+    my $sql = <<"EOS";
+create table experience (
+  row_id integer primary key autoincrement,
+  id not null unique default '',
+  user integer not null default 0,
+  title varchar(255) not null default '',
+  institute not null default '',
+  address not null default '',
+  start date default '0000-00-00',
+  leave date default '0000-00-00',
+  detials not null default ''
+);
+EOS
+    $dbi->execute($sql);
+  };
+
+eval {
+    my $sql = <<"EOS";
+create table education (
+  row_id integer primary key autoincrement,
+  id not null unique default '',
+  user integer not null default 0,
+  name varchar(255) not null default '',
+  institute not null default '',
+  address not null default '',
+  start date default '0000-00-00',
+  leave date default '0000-00-00'
+);
+EOS
+    $dbi->execute($sql);
+  };
+
+eval {
+    my $sql = <<"EOS";
+create table stories (
+  row_id integer primary key autoincrement,
+  id not null unique default '',
+  user integer not null default 0,
+  who integer not null default 0,
+  vtime datetime default '0000-00-00 00:00:00'
+);
+EOS
+    $dbi->execute($sql);
+  };
+
+eval {
+    my $sql = <<"EOS";
+create table contact (
+  row_id integer primary key autoincrement,
+  user integer not null default 0,
+  info not null default '',
+  type integer not null default 0,
+  privacy integer not null default 0
+);
+EOS
+    $dbi->execute($sql);
+  };
+
+my $project_columns = [
+    "gender integer not null default 0"
+  ];
+for my $column (@$project_columns) {
+    eval { $dbi->execute("alter table user add column $column") };
+  }

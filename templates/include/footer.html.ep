@@ -1,0 +1,13 @@
+<div class="footer">
+  <div class="container">
+    <div>
+      &copy;copy right all reserved by <a href="#">ProNoor</a> 
+    </div>
+
+    % if (app->mode eq 'development') {
+      <div>
+        <a href="<%= url_for('/dbviewer') %>">DBViewer</a>
+      </div>
+    % }
+  </div>
+</div>

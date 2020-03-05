@@ -1,0 +1,49 @@
+#!/usr/bin/env perl
+
+use FindBin;
+use DBIx::Custom;
+
+my $database_file = shift // "$FindBin::Bin/data/gitprep.db";
+
+#  DBI
+my %dbi_args = (
+  dsn => "dbi:SQLite:database=$database_file",
+  connector => 1,
+  option => {sqlite_unicode => 1, sqlite_use_immediate_transaction => 1}
+);
+my $dbi = DBIx::Custom->connect(%dbi_args);
+
+# Database state
+my $database_state;
+if (!-f $database_file) {
+  $database_state = 'empty';
+}
+else {
+  # If project.user_id exists, that database is version 1
+  eval { $dbi->select('user_id', table => 'project', append => 'limit 0, 1') };
+  
+  if ($@) {
+    $database_state = 'current';
+  }
+  else {
+    $database_state = 'v1';
+  }
+}
+
+# Need upgrade
+if ($database_state eq 'v1') {
+  die "Can't setup database. you maybe need upgrade database";
+}
+
+eval {
+    my $sql = <<"EOS";
+create table contact (
+  row_id integer primary key autoincrement,
+  user integer not null default 0,
+  info not null default '',
+  type integer not null default 0,
+  privacy integer not null default 0
+);
+EOS
+    $dbi->execute($sql);
+  };

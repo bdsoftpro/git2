@@ -1,0 +1,22 @@
+<footer class="footer">
+    <div>
+    
+    <nav class="nav">
+        GitDada@2020 All Rigth Reserved. <span>Powered by <a href="<%= url_for('/') %>">ProNoor</a> | </span>
+        <a href="#" class="nav-link">Term</a>
+        <a href="#" class="nav-link">Privancy</a>
+        <a href="#" class="nav-link">Security</a>
+        <a href="#" class="nav-link">Status</a>
+        <a href="#" class="nav-link">Help</a>
+    </nav>
+    </div>
+    <div>
+    <nav class="nav">
+        <a href="#" class="nav-link">Contact Gitdada</a>
+        <a href="#" class="nav-link">Api</a>
+        <a href="#" class="nav-link">Training</a>
+        <a href="#" class="nav-link">Blog</a>
+        <a href="#" class="nav-link">About</a>
+    </nav>
+    </div>
+</footer>
