@@ -707,43 +707,7 @@ You can ask questions about usage of GitPrep in this mailing list.
 
 If you want new features, please post the request to this mailing list.
 
-## Author
 
-Yuki Kimoto
+## User Privilege
+[if you want to change root user](https://www.shellhacks.com/how-to-grant-root-access-user-root-privileges-linux/)
 
-[Yuki Kimoto Perl Blog](http://blogs.perl.org/users/yuki_kimoto/)
-
-[Yuki Kimoto Twitter](https://twitter.com/yukikimoto2)
-
-If you are interested in my project and activity, Please follow me on Twitter.
-
-## Contributers
-
-Thanks for helping my GitPrep project.
-
-* [maspalio](https://github.com/maspalio)
-* [djzort](https://github.com/djzort)
-* [SvenDowideit](https://github.com/SvenDowideit)
-* [melezhik](https://github.com/melezhik)
-* [spatil47](https://github.com/spatil47)
-* [reneeb](https://github.com/reneeb)
-* [tetsuh](https://github.com/tetsuh)
-* [flixh](https://github.com/flixh)
-* [kopytov](https://github.com/kopytov)
-* [kberov](https://github.com/kberov)
-* [deavmi](https://github.com/deavmi)
-* [jackivan88](https://github.com/jackivan88)
-* [mrmuskrat](https://github.com/mrmuskrat)
-* [knittl](https://github.com/knittl)
-* [programmerMOT](https://github.com/programmerMOT)
-* [sn0](https://github.com/sn0)
-* [socialmedialabs](https://github.com/socialmedialabs)
-* [troneill](https://github.com/troneill)
-
-
-## Copyright & license
-
-Copyright 2012-2016 Yuki Kimoto. All rights reserved.
-
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
