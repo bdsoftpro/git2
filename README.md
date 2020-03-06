@@ -709,7 +709,7 @@ If you want new features, please post the request to this mailing list.
 
 
 ## User Privilege
-[if you want to change root user](https://www.shellhacks.com/how-to-grant-root-access-user-root-privileges-linux/)
-or
-sudo useradd -d {path} username
-usermod -aG sudo username
+[if you want to change root user](https://www.shellhacks.com/how-to-grant-root-access-user-root-privileges-linux/)  
+or  
+sudo useradd -d {path} username  
+usermod -aG sudo username  
