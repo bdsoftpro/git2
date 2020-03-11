@@ -1,0 +1,141 @@
+CREATE TABLE collaboration (
+  row_id integer primary key autoincrement,
+  project integer not null default 0,
+  user integer not null default 0,
+  unique(project, user)
+)
+CREATE TABLE contact (
+  row_id integer primary key autoincrement,
+  user integer not null default 0,
+  info not null default '',
+  type integer not null default 0,
+  privacy integer not null default 0
+)
+
+CREATE TABLE education (
+  row_id integer primary key autoincrement,
+  id not null unique default '',
+  user integer not null default 0,
+  name varchar(255) not null default '',
+  institute not null default '',
+  address not null default '',
+  start date default '0000-00-00',
+  leave date default '0000-00-00'
+)
+
+CREATE TABLE experience (
+  row_id integer primary key autoincrement,
+  id not null unique default '',
+  user integer not null default 0,
+  title varchar(255) not null default '',
+  institute not null default '',
+  address not null default '',
+  start date default '0000-00-00',
+  leave date default '0000-00-00',
+  detials not null default ''
+)
+
+CREATE TABLE issue (
+  row_id integer primary key autoincrement,
+  project integer not null default 0,
+  number integer not null default 0, title not null default '', open integer not null default 0, open_time integer not null default 0, open_user integer not null default 0, pull_request integer  not null default 0,
+  unique(project, number)
+)
+
+CREATE TABLE issue_label (
+  row_id integer primary key autoincrement,
+  issue integer not null default 0,
+  label integer not null default 0,
+  unique(issue, label)
+)
+
+CREATE TABLE issue_message (
+  row_id integer primary key autoincrement,
+  issue integer not null default 0,
+  number integer not null default 0, message not null default '', create_time integer not null default 0, update_time integer not null default 0, user integer not null default 0,
+  unique(issue, number)
+)
+
+CREATE TABLE label (
+  row_id integer primary key autoincrement,
+  project integer not null default 0,
+  id varchar(100) not null default '', color not null default '',
+  unique(project, id)
+)
+
+CREATE TABLE profile (
+  row_id integer primary key autoincrement,
+  id not null unique default '',
+  user integer not null default 0,
+  bio not null default '',
+  starts integer not null default 0,
+  followers integer not null default 0,
+  following integer not null default 0,
+  address not null default '',
+  zip integer not null default 0,
+  state varchar(100) not null default '',
+  country varchar(100) not null default ''
+)
+
+CREATE TABLE "project" (
+	"row_id"	integer PRIMARY KEY AUTOINCREMENT,
+	"user"	integer NOT NULL DEFAULT 0,
+	"id"	TEXT NOT NULL,
+	"default_branch"	TEXT NOT NULL DEFAULT 'master',
+	"original_project"	integer NOT NULL DEFAULT 0,
+	"private"	integer NOT NULL DEFAULT 0,
+	"ignore_space_change"	integer NOT NULL DEFAULT 0,
+	"guess_encoding"	integer NOT NULL DEFAULT '',
+	"website_url"	TEXT NOT NULL DEFAULT '',
+	UNIQUE("user","id")
+)
+
+CREATE TABLE pull_request (
+  row_id integer primary key autoincrement,
+  base_project integer not null default 0,
+  base_branch not null default '',
+  target_project integer not null default 0,
+  target_branch not null default '',
+  unique(base_project, base_branch, target_project, target_branch)
+)
+
+CREATE TABLE "social" (
+	"row_id"	integer PRIMARY KEY AUTOINCREMENT,
+	"id"	TEXT NOT NULL DEFAULT '' UNIQUE,
+	"user"	integer NOT NULL DEFAULT 0,
+	"socialurl"	varchar(255) NOT NULL DEFAULT '',
+	"name"	varchar(255)
+)
+
+CREATE TABLE sqlite_sequence(name,seq)
+
+CREATE TABLE ssh_public_key (
+  row_id integer primary key autoincrement,
+  key not null unique default ''
+, user integer not null default 0, title not null default '')
+
+CREATE TABLE stories (
+  row_id integer primary key autoincrement,
+  id not null unique default '',
+  user integer not null default 0,
+  who integer not null default 0,
+  vtime datetime default '0000-00-00 00:00:00'
+)
+
+CREATE TABLE "user" (
+	"row_id"	integer PRIMARY KEY AUTOINCREMENT,
+	"id"	TEXT NOT NULL DEFAULT '' UNIQUE,
+	"email"	TEXT NOT NULL DEFAULT '' UNIQUE,
+	"admin"	integer NOT NULL DEFAULT 0,
+	"password"	TEXT NOT NULL DEFAULT '',
+	"salt"	TEXT NOT NULL DEFAULT '',
+	"name"	TEXT NOT NULL DEFAULT '',
+	"status"	integer NOT NULL DEFAULT 0,
+	"maxsize"	varchar(60) NOT NULL DEFAULT 5000000
+, gender integer not null default 0)
+
+CREATE TABLE wiki (
+  row_id integer primary key autoincrement,
+  project integer not null default 0,
+  unique(project)
+)
